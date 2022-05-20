@@ -4,11 +4,11 @@ from .db_session import SqlAlchemyBase
 import sqlalchemy.orm as orm
 
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 
 
-
-class User(SqlAlchemyBase):
+class User(SqlAlchemyBase, UserMixin):
     __tablename__ = 'users'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)

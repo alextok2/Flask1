@@ -1,6 +1,7 @@
 import datetime
 import sqlalchemy
 from sqlalchemy import orm
+from sqlalchemy.orm import relationship
 from .db_session import SqlAlchemyBase
 
 class News(SqlAlchemyBase):
@@ -14,5 +15,9 @@ class News(SqlAlchemyBase):
     user_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))
     user = orm.relation('User')
 
-news = orm.relation("News", back_populates='user')
+    categories = orm.relation("Category", secondary="association", backref="News")
+    # news = relationship("News", back_populates='users')
+    
+
+
 
